@@ -1,0 +1,37 @@
+{
+    "name": "snowye-components",
+    "version": "0.0.1",
+    "description": "snowye react 组件库",
+    "module": "dist/esm/index.js",
+    "types": "dist/esm/index.d.ts",
+    "scripts": {
+        "dev": "father dev",
+        "build": "father build",
+        "build:deps": "father prebundle",
+        "prepublishOnly": "father doctor && npm run build"
+    },
+    "keywords": [],
+    "authors": [
+        "snowye <chenjinyudong@gmail.com>"
+    ],
+    "license": "MIT",
+    "files": [
+        "dist",
+        "compiled"
+    ],
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
+    },
+    "peerDependencies": {
+        "react": ">=16.9.0",
+        "react-dom": ">=16.9.0"
+    },
+    "devDependencies": {
+        "@types/react": "^18.2.79",
+        "@types/react-dom": "^18.2.25",
+        "father": "^4.4.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    }
+}
