@@ -1,4 +1,6 @@
-import { CSSProperties, Fragment, ReactNode, useEffect, useState } from "react"
+import { css } from "@emotion/css"
+import { CSSProperties, ForwardedRef, Fragment, ReactNode, forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react"
+import { twMerge } from "tailwind-merge"
 
 export type RotatoNumberProps = {
     number: number
@@ -14,8 +16,18 @@ function padZero(num: number, digit: number) {
     return num.toString().padStart(digit, "0")
 }
 
-const RotatoNumber = (props: RotatoNumberProps) => {
+export const RotatoNumber = forwardRef<HTMLDivElement, RotatoNumberProps>((props: RotatoNumberProps, ref: ForwardedRef<HTMLDivElement>) => {
     const { number: PorpsNumber, className = "", style, color = "#fff", delay = 1000, render } = props
+
+    const containerRef = useRef<HTMLDivElement>(null)
+
+    useImperativeHandle(
+        ref,
+        () => {
+            return containerRef.current!
+        },
+        []
+    )
 
     const [number, setFcNumber] = useState(PorpsNumber)
 
@@ -51,12 +63,20 @@ const RotatoNumber = (props: RotatoNumberProps) => {
     }, [PorpsNumber])
 
     return (
-        <div className={className} style={{ display: "flex", gap: 8, ...style }}>
+        <div
+            ref={containerRef}
+            className={twMerge(
+                css`
+                    display: flex;
+                    gap: 8px;
+                `,
+                className
+            )}
+            style={style}
+        >
             {numberList.map((digit, index) => {
                 return <Fragment key={index}>{render ? render(<div style={{ transformOrigin: "center", transform: `${`rotate3d(1,0,0,${angle[index]}deg)`}`, color, transition: `transform ${delay / 1000}s` }}>{digit}</div>) : <div style={{ transformOrigin: "center", transform: `${`rotate3d(1,0,0,${angle[index]}deg)`}`, color, transition: `transform ${delay / 1000}s` }}>{digit}</div>}</Fragment>
             })}
         </div>
     )
-}
-
-export default RotatoNumber
+})

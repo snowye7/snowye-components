@@ -1,6 +1,6 @@
 {
     "name": "snowye-components",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "snowye react 组件库",
     "module": "dist/esm/index.js",
     "types": "dist/esm/index.d.ts",
@@ -33,5 +33,9 @@
         "father": "^4.4.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
+    },
+    "dependencies": {
+        "@emotion/css": "^11.11.2",
+        "tailwind-merge": "^2.3.0"
     }
 }

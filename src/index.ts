@@ -1,4 +1,2 @@
-import Triangle from "./components/Triangle"
-import FilpNumber from "./components/FilpNumber"
-
-export { Triangle, FilpNumber }
+export * from "./components/FilpNumber"
+export * from "./components/Triangle"

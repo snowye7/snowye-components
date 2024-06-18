@@ -1,3 +1,5 @@
+import { ForwardedRef, forwardRef, useImperativeHandle, useRef } from "react"
+
 export interface TriangleProps {
     width: number
     height: number
@@ -7,8 +9,18 @@ export interface TriangleProps {
     direction?: "up" | "down" | "left" | "right"
 }
 
-const Triangle: React.FC<TriangleProps> = props => {
+export const Triangle = forwardRef<SVGSVGElement, TriangleProps>((props: TriangleProps, ref: ForwardedRef<SVGSVGElement>) => {
     const { width, height, color, direction = "up", className, style } = props
+
+    const svgRef = useRef<SVGSVGElement>(null)
+
+    useImperativeHandle(
+        ref,
+        () => {
+            return svgRef.current!
+        },
+        []
+    )
 
     const points = {
         down: `0,0 ${width},${0} ${width / 2},${height}`,
@@ -17,10 +29,9 @@ const Triangle: React.FC<TriangleProps> = props => {
         right: `0,0 ${width},${height / 2} 0,${height}`
     }
     return (
-        <svg className={className} style={style} width={width} height={height} viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg">
+        <svg ref={svgRef} className={className} style={style} width={width} height={height} viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg">
             <polygon points={points[direction]} fill={color} />
         </svg>
     )
-}
+})
 
-export default Triangle
