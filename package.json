@@ -1,6 +1,6 @@
 {
     "name": "snowye-components",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "snowye react 组件库",
     "module": "dist/esm/index.js",
     "types": "dist/esm/index.d.ts",

@@ -63,17 +63,7 @@ export const RotatoNumber = forwardRef<HTMLDivElement, RotatoNumberProps>((props
     }, [PorpsNumber])
 
     return (
-        <div
-            ref={containerRef}
-            className={clsx(
-                css`
-                    display: flex;
-                    gap: 8px;
-                `,
-                className
-            )}
-            style={style}
-        >
+        <div ref={containerRef} className={className} style={style}>
             {numberList.map((digit, index) => {
                 return <Fragment key={index}>{render ? render(<div style={{ transformOrigin: "center", transform: `${`rotate3d(1,0,0,${angle[index]}deg)`}`, color, transition: `transform ${delay / 1000}s` }}>{digit}</div>) : <div style={{ transformOrigin: "center", transform: `${`rotate3d(1,0,0,${angle[index]}deg)`}`, color, transition: `transform ${delay / 1000}s` }}>{digit}</div>}</Fragment>
             })}
