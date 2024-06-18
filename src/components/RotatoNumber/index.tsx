@@ -1,6 +1,6 @@
 import { css } from "@emotion/css"
 import { CSSProperties, ForwardedRef, Fragment, ReactNode, forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react"
-import { twMerge } from "tailwind-merge"
+import { clsx } from "snowye-tools"
 
 export type RotatoNumberProps = {
     number: number
@@ -65,7 +65,7 @@ export const RotatoNumber = forwardRef<HTMLDivElement, RotatoNumberProps>((props
     return (
         <div
             ref={containerRef}
-            className={twMerge(
+            className={clsx(
                 css`
                     display: flex;
                     gap: 8px;
