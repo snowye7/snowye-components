@@ -1,6 +1,4 @@
-import { css } from "@emotion/css"
-import { CSSProperties, ForwardedRef, Fragment, ReactNode, forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react"
-import { clsx } from "snowye-tools"
+import { CSSProperties, ForwardedRef, Fragment, HTMLAttributes, ReactNode, forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react"
 
 export type RotatoNumberProps = {
     number: number
@@ -10,7 +8,7 @@ export type RotatoNumberProps = {
     digit?: number
     delay?: number
     render?: (node: ReactNode) => ReactNode
-}
+} & HTMLAttributes<HTMLDivElement>
 
 function padZero(num: number, digit: number) {
     return num.toString().padStart(digit, "0")

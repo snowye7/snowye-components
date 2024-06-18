@@ -1,13 +1,13 @@
-import { ForwardedRef, forwardRef, useImperativeHandle, useRef } from "react"
+import { ForwardedRef, SVGProps, forwardRef, useImperativeHandle, useRef } from "react"
 
-export interface TriangleProps {
+export type TriangleProps = {
     width: number
     height: number
     color: string
     className?: string
     style?: React.CSSProperties
     direction?: "up" | "down" | "left" | "right"
-}
+} & SVGProps<SVGSVGElement>
 
 export const Triangle = forwardRef<SVGSVGElement, TriangleProps>((props: TriangleProps, ref: ForwardedRef<SVGSVGElement>) => {
     const { width, height, color, direction = "up", className, style } = props
@@ -34,4 +34,3 @@ export const Triangle = forwardRef<SVGSVGElement, TriangleProps>((props: Triangl
         </svg>
     )
 })
-
