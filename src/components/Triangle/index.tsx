@@ -10,7 +10,7 @@ export type TriangleProps = {
 } & SVGProps<SVGSVGElement>
 
 export const Triangle = forwardRef<SVGSVGElement, TriangleProps>((props: TriangleProps, ref: ForwardedRef<SVGSVGElement>) => {
-    const { width, height, color, direction = "up", className, style } = props
+    const { width, height, color, direction = "up", className, style, ...rest } = props
 
     const svgRef = useRef<SVGSVGElement>(null)
 
@@ -29,7 +29,7 @@ export const Triangle = forwardRef<SVGSVGElement, TriangleProps>((props: Triangl
         right: `0,0 ${width},${height / 2} 0,${height}`
     }
     return (
-        <svg ref={svgRef} className={className} style={style} width={width} height={height} viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg">
+        <svg ref={svgRef} className={className} style={style} width={width} height={height} viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg" {...rest}>
             <polygon points={points[direction]} fill={color} />
         </svg>
     )

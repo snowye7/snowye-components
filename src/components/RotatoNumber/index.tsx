@@ -15,7 +15,7 @@ function padZero(num: number, digit: number) {
 }
 
 export const RotatoNumber = forwardRef<HTMLDivElement, RotatoNumberProps>((props: RotatoNumberProps, ref: ForwardedRef<HTMLDivElement>) => {
-    const { number: PorpsNumber, className = "", style, color = "#fff", delay = 1000, render } = props
+    const { number: PorpsNumber, className = "", style, color = "#fff", delay = 1000, render, ...rest } = props
 
     const containerRef = useRef<HTMLDivElement>(null)
 
@@ -61,7 +61,7 @@ export const RotatoNumber = forwardRef<HTMLDivElement, RotatoNumberProps>((props
     }, [PorpsNumber])
 
     return (
-        <div ref={containerRef} className={className} style={style}>
+        <div ref={containerRef} className={className} style={style} {...rest}>
             {numberList.map((digit, index) => {
                 return <Fragment key={index}>{render ? render(<div style={{ transformOrigin: "center", transform: `${`rotate3d(1,0,0,${angle[index]}deg)`}`, color, transition: `transform ${delay / 1000}s` }}>{digit}</div>) : <div style={{ transformOrigin: "center", transform: `${`rotate3d(1,0,0,${angle[index]}deg)`}`, color, transition: `transform ${delay / 1000}s` }}>{digit}</div>}</Fragment>
             })}
