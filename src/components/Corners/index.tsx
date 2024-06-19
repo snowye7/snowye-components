@@ -1,3 +1,4 @@
+import { css } from "@emotion/css"
 import { CSSProperties, HTMLAttributes, PropsWithChildren, forwardRef, useImperativeHandle, useRef } from "react"
 import { clsx } from "snowye-tools"
 
@@ -33,7 +34,17 @@ export const Corners = forwardRef<HTMLDivElement, CornersProps>((props, ref) => 
     )
 
     return (
-        <div className={clsx("relative", className)} ref={divRef} style={style} {...rest}>
+        <div
+            className={clsx(
+                css`
+                    position: relative;
+                `,
+                className
+            )}
+            ref={divRef}
+            style={style}
+            {...rest}
+        >
             {showCorner && (
                 <>
                     <div style={{ position: "absolute", top: 0, left: 0, width: cornerWidth, height: cornerWidth, borderLeft: `${cornerSize}px solid ${color}`, borderTop: `${cornerSize}px solid ${color}` }}></div>
