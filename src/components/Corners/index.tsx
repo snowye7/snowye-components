@@ -6,7 +6,7 @@ export type CornersProps = HTMLAttributes<HTMLDivElement> &
     PropsWithChildren & {
         showCorner?: boolean
         className?: string
-        olor?: string
+        color?: string
         /**
          * @default 8
          * @description 角的长宽
