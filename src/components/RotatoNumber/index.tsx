@@ -15,7 +15,7 @@ function padZero(num: number, digit: number) {
 }
 
 export const RotatoNumber = forwardRef<HTMLDivElement, RotatoNumberProps>((props: RotatoNumberProps, ref: ForwardedRef<HTMLDivElement>) => {
-    const { number: PorpsNumber, className = "", style, color = "#fff", delay = 1000, render, ...rest } = props
+    const { number: PorpsNumber, className = "", style, color, delay = 1000, render, ...rest } = props
 
     const containerRef = useRef<HTMLDivElement>(null)
 
