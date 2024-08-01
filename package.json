@@ -1,6 +1,6 @@
 {
     "name": "snowye-components",
-    "version": "0.0.21",
+    "version": "0.0.25",
     "description": "snowye react 组件库",
     "module": "dist/esm/index.js",
     "types": "dist/esm/index.d.ts",
@@ -8,7 +8,7 @@
         "dev": "father dev",
         "build": "father build",
         "build:deps": "father prebundle",
-        "prepublishOnly": "father doctor && npm run build"
+        "prepublishOnly": "father doctor && yarn build"
     },
     "keywords": [],
     "authors": [
