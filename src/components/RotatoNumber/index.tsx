@@ -14,7 +14,7 @@ export type RotatoNumberProps = {
      * 旋转的时间
      */
     delay?: number
-    render?: (node: ReactNode) => ReactNode
+    render?: (node: ReactNode, index: number) => ReactNode
 } & HTMLAttributes<HTMLDivElement>
 
 export function padZero(num: number, digit: number) {
@@ -75,7 +75,7 @@ export const RotatoNumber = forwardRef<HTMLDivElement, RotatoNumberProps>((props
     return (
         <div ref={containerRef} className={className} style={{ display: "flex", ...style }} {...rest}>
             {numberList.map((digit, index) => {
-                return <Fragment key={index}>{render ? render(<div style={{ transformOrigin: "center", transform: `${`rotate3d(1,0,0,${angle[index]}deg)`}`, color, transition: `transform ${delay / 1000}s`, ...itemStyle }}>{digit}</div>) : <div style={{ transformOrigin: "center", transform: `${`rotate3d(1,0,0,${angle[index]}deg)`}`, color, transition: `transform ${delay / 1000}s`, ...itemStyle }}>{digit}</div>}</Fragment>
+                return <Fragment key={index}>{render ? render(<div style={{ transformOrigin: "center", transform: `${`rotate3d(1,0,0,${angle[index]}deg)`}`, color, transition: `transform ${delay / 1000}s`, ...itemStyle }}>{digit}</div>, index) : <div style={{ transformOrigin: "center", transform: `${`rotate3d(1,0,0,${angle[index]}deg)`}`, color, transition: `transform ${delay / 1000}s`, ...itemStyle }}>{digit}</div>}</Fragment>
             })}
         </div>
     )
