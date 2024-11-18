@@ -8,6 +8,8 @@ export type CornersProps = HTMLAttributes<HTMLDivElement> &
         className?: string
         cornerStyle?: CSSProperties
         cornerClassName?: string
+        /** 圆角 */
+        radius?: number
         color?: string
         /**
          * @default 8
@@ -23,7 +25,7 @@ export type CornersProps = HTMLAttributes<HTMLDivElement> &
     }
 
 export const Corners = forwardRef<HTMLDivElement, CornersProps>((props, ref) => {
-    const { children, showCorner = true, className, color = "#000", cornerSize = 1, cornerWidth = 8, style, cornerStyle, cornerClassName, ...rest } = props
+    const { children, showCorner = true, className, color = "#000", cornerSize = 1, cornerWidth = 8, style, cornerStyle, cornerClassName, radius, ...rest } = props
 
     const divRef = useRef<HTMLDivElement>(null)
 
@@ -49,10 +51,10 @@ export const Corners = forwardRef<HTMLDivElement, CornersProps>((props, ref) => 
         >
             {showCorner && (
                 <>
-                    <div className={cornerClassName} style={{ position: "absolute", top: 0, left: 0, width: cornerWidth, height: cornerWidth, borderLeft: `${cornerSize}px solid ${color}`, borderTop: `${cornerSize}px solid ${color}`, ...cornerStyle }}></div>
-                    <div className={cornerClassName} style={{ position: "absolute", top: 0, right: 0, width: cornerWidth, height: cornerWidth, borderRight: `${cornerSize}px solid ${color}`, borderTop: `${cornerSize}px solid ${color}`, ...cornerStyle }}></div>
-                    <div className={cornerClassName} style={{ position: "absolute", bottom: 0, left: 0, width: cornerWidth, height: cornerWidth, borderLeft: `${cornerSize}px solid ${color}`, borderBottom: `${cornerSize}px solid ${color}`, ...cornerStyle }}></div>
-                    <div className={cornerClassName} style={{ position: "absolute", bottom: 0, right: 0, width: cornerWidth, height: cornerWidth, borderRight: `${cornerSize}px solid ${color}`, borderBottom: `${cornerSize}px solid ${color}`, ...cornerStyle }}></div>
+                    <div className={cornerClassName} style={{ position: "absolute", top: 0, left: 0, width: cornerWidth, height: cornerWidth, borderLeft: `${cornerSize}px solid ${color}`, borderTop: `${cornerSize}px solid ${color}`, borderRadius: `${radius}px 0 0 0`, ...cornerStyle }}></div>
+                    <div className={cornerClassName} style={{ position: "absolute", top: 0, right: 0, width: cornerWidth, height: cornerWidth, borderRight: `${cornerSize}px solid ${color}`, borderTop: `${cornerSize}px solid ${color}`, borderRadius: `0 ${radius}px 0 0`, ...cornerStyle }}></div>
+                    <div className={cornerClassName} style={{ position: "absolute", bottom: 0, left: 0, width: cornerWidth, height: cornerWidth, borderLeft: `${cornerSize}px solid ${color}`, borderBottom: `${cornerSize}px solid ${color}`, borderRadius: ` 0 0 0 ${radius}px`, ...cornerStyle }}></div>
+                    <div className={cornerClassName} style={{ position: "absolute", bottom: 0, right: 0, width: cornerWidth, height: cornerWidth, borderRight: `${cornerSize}px solid ${color}`, borderBottom: `${cornerSize}px solid ${color}`, borderRadius: `0 0 ${radius}px 0`, ...cornerStyle }}></div>
                 </>
             )}
             {children}
